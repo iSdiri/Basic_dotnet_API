@@ -46,5 +46,4 @@ Interface Swagger disponible sur : `http://localhost:5092/swagger`
 - [ ] Base de données SQL Server / PostgreSQL
 - [ ] Validation des entrées (FluentValidation)
 - [ ] Authentification JWT
-- [ ] Pagination
 - [ ] Tests unitaires
