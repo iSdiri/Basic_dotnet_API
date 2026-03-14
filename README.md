@@ -1,49 +1,69 @@
 # Basic .NET API
 
-Une API RESTful simple construite avec ASP.NET Core 8 pour démontrer une structure de projet propre avec des contrôleurs, DTOs, mappers, repositories et modèles.
+A RESTful API built with ASP.NET Core 8 demonstrating a clean project structure with controllers, DTOs, mappers, repositories and models.
 
-## Stack Technique
+## Tech Stack
 
 - .NET 8
 - C#
-- Entity Framework Core (InMemory)
+- Entity Framework Core
+- PostgreSQL
 - Swagger / OpenAPI
 
-## Démarrage
+## Prerequisites
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download)
+- [PostgreSQL](https://www.postgresql.org/)
+
+## Getting Started
 ```bash
 git clone https://github.com/TON_USERNAME/Basic_dotnet_API.git
 cd Basic_dotnet_API
 dotnet restore
+```
+
+Update `appsettings.json` with your PostgreSQL credentials:
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=BasicApiDb;Username=YOUR_USERNAME;Password=YOUR_PASSWORD"
+  }
+}
+```
+
+Apply migrations and run:
+```bash
+dotnet ef database update
 dotnet run
 ```
 
-Interface Swagger disponible sur : `http://localhost:5092/swagger`
+Swagger UI available at: `http://localhost:5092/swagger`
 
 ## Endpoints
 
-### User
+### Users
 
-| Méthode | Route | Description |
-|---------|-------|-------------|
-| GET | /api/user | Récupérer tous les utilisateurs |
-| GET | /api/user/{id} | Récupérer un utilisateur par ID |
-| POST | /api/user | Créer un utilisateur |
-| PUT | /api/user/{id} | Modifier un utilisateur |
-| DELETE | /api/user/{id} | Supprimer un utilisateur |
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | /api/user | Get all users |
+| GET | /api/user/{id} | Get user by ID |
+| POST | /api/user | Create a user |
+| PUT | /api/user/{id} | Update a user |
+| DELETE | /api/user/{id} | Delete a user |
 
-### Task
+### Tasks
 
-| Méthode | Route | Description |
-|---------|-------|-------------|
-| GET | /api/task | Récupérer toutes les tâches |
-| GET | /api/task/{id} | Récupérer une tâche par ID |
-| POST | /api/task | Créer une tâche |
-| PUT | /api/task/{id} | Modifier une tâche |
-| DELETE | /api/task/{id} | Supprimer une tâche |
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | /api/task | Get all tasks |
+| GET | /api/task/{id} | Get task by ID |
+| POST | /api/task | Create a task |
+| PUT | /api/task/{id} | Update a task |
+| DELETE | /api/task/{id} | Delete a task |
 
-## À Venir
+## Roadmap
 
-- [ ] Base de données SQL Server / PostgreSQL
-- [ ] Validation des entrées (FluentValidation)
-- [ ] Authentification JWT
-- [ ] Tests unitaires
+- [x] PostgreSQL database
+- [ ] Input validation (FluentValidation)
+- [ ] JWT Authentication
+- [ ] Unit tests
