@@ -2,41 +2,32 @@ import { useState, useEffect } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
-export default function Tasks() {
-  const [tasks, setTasks] = useState([]);
+export default function Notes() {
+  const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [content, setContent] = useState('');
   const navigate = useNavigate();
 
-  const fetchTasks = async () => {
+  const fetchNotes = async () => {
     try {
-      const res = await api.get('/task');
-      setTasks(res.data);
+      const res = await api.get('/note');
+      setNotes(res.data);
     } catch {
       navigate('/login');
     }
   };
 
-  const createTask = async () => {
+  const createNote = async () => {
     if (!title) return;
-    await api.post('/task', { title, description, userId: 1 });
+    await api.post('/note', { title, content, userId: 1 });
     setTitle('');
-    setDescription('');
-    fetchTasks();
+    setContent('');
+    fetchNotes();
   };
 
-  const toggleComplete = async (task) => {
-    await api.put(`/task/${task.id}`, {
-      title: task.title,
-      description: task.description,
-      isCompleted: !task.isCompleted
-    });
-    fetchTasks();
-  };
-
-  const deleteTask = async (id) => {
-    await api.delete(`/task/${id}`);
-    fetchTasks();
+  const deleteNote = async (id) => {
+    await api.delete(`/note/${id}`);
+    fetchNotes();
   };
 
   const logout = () => {
@@ -44,36 +35,29 @@ export default function Tasks() {
     navigate('/login');
   };
 
-  useEffect(() => { fetchTasks(); }, []);
+  useEffect(() => { fetchNotes(); }, []);
 
   return (
     <div style={styles.container}>
       <div style={styles.header}>
-        <h2>My Tasks</h2>
+        <h2>My Notes</h2>
         <button style={styles.logout} onClick={logout}>Logout</button>
       </div>
 
       <div style={styles.form}>
         <input style={styles.input} placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
-        <input style={styles.input} placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
-        <button style={styles.button} onClick={createTask}>Add Task</button>
+        <input style={styles.input} placeholder="Content" value={content} onChange={e => setContent(e.target.value)} />
+        <button style={styles.button} onClick={createNote}>Add Note</button>
       </div>
 
       <div style={styles.list}>
-        {tasks.map(task => (
-          <div key={task.id} style={styles.task}>
-            <div style={styles.taskInfo}>
-              <span style={{ textDecoration: task.isCompleted ? 'line-through' : 'none', fontWeight: 'bold' }}>
-                {task.title}
-              </span>
-              <span style={styles.desc}>{task.description}</span>
+        {notes.map(note => (
+          <div key={note.id} style={styles.note}>
+            <div style={styles.noteInfo}>
+              <span style={{ fontWeight: 'bold' }}>{note.title}</span>
+              <span style={styles.content}>{note.content}</span>
             </div>
-            <div style={styles.actions}>
-              <button style={styles.complete} onClick={() => toggleComplete(task)}>
-                {task.isCompleted ? '↩' : '✓'}
-              </button>
-              <button style={styles.delete} onClick={() => deleteTask(task.id)}>✕</button>
-            </div>
+            <button style={styles.delete} onClick={() => deleteNote(note.id)}>✕</button>
           </div>
         ))}
       </div>
@@ -89,10 +73,8 @@ const styles = {
   button: { padding: '0.6rem 1rem', background: '#4f46e5', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' },
   logout: { padding: '0.5rem 1rem', background: '#ef4444', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' },
   list: { display: 'flex', flexDirection: 'column', gap: '0.75rem' },
-  task: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'white', padding: '1rem', borderRadius: '8px', boxShadow: '0 1px 4px rgba(0,0,0,0.1)' },
-  taskInfo: { display: 'flex', flexDirection: 'column', gap: '0.25rem' },
-  desc: { fontSize: '0.85rem', color: '#666' },
-  actions: { display: 'flex', gap: '0.5rem' },
-  complete: { padding: '0.4rem 0.7rem', background: '#22c55e', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' },
+  note: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'white', padding: '1rem', borderRadius: '8px', boxShadow: '0 1px 4px rgba(0,0,0,0.1)' },
+  noteInfo: { display: 'flex', flexDirection: 'column', gap: '0.25rem' },
+  content: { fontSize: '0.85rem', color: '#666' },
   delete: { padding: '0.4rem 0.7rem', background: '#ef4444', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' },
 };

@@ -17,14 +17,14 @@ public static class DbSeeder
         context.Users.AddRange(users);
         context.SaveChanges();
 
-        var tasks = new List<TaskItem>
+        var notes = new List<Note>
         {
-            new() { Title = "Buy groceries", Description = "Milk, eggs, bread", UserId = 1 },
-            new() { Title = "Read a book", Description = "Finish Clean Code", UserId = 1 },
-            new() { Title = "Go for a run", Description = "5km minimum", UserId = 2 }
+            new() { Title = "Shopping list", Content = "Milk, eggs, bread", UserId = 1 },
+            new() { Title = "Book notes", Content = "Finish Clean Code chapter 3", UserId = 1 },
+            new() { Title = "Workout", Content = "Run 5km minimum", UserId = 2 }
         };
 
-        context.Tasks.AddRange(tasks);
+        context.Notes.AddRange(notes);
         context.SaveChanges();
     }
 }

@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Basic_dotnet_API.Validators;
 
-public class CreateTaskValidator : AbstractValidator<CreateTaskDto>
+public class CreateNoteValidator : AbstractValidator<CreateNoteDto>
 {
-    public CreateTaskValidator()
+    public CreateNoteValidator()
     {
         RuleFor(x => x.Title)
             .NotEmpty().WithMessage("Title is required.")
@@ -16,9 +16,9 @@ public class CreateTaskValidator : AbstractValidator<CreateTaskDto>
     }
 }
 
-public class UpdateTaskValidator : AbstractValidator<UpdateTaskDto>
+public class UpdateNoteValidator : AbstractValidator<UpdateNoteDto>
 {
-    public UpdateTaskValidator()
+    public UpdateNoteValidator()
     {
         RuleFor(x => x.Title)
             .NotEmpty().WithMessage("Title is required.")

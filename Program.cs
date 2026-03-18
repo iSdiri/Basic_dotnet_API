@@ -46,8 +46,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<INoteRepository, NoteRepository>();
 builder.Services.AddScoped<TokenService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
@@ -86,8 +87,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthentication();
 app.UseCors("AllowReact");
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
 app.Run();
