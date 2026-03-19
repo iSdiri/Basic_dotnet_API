@@ -47,6 +47,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<INoteRepository, NoteRepository>();
+builder.Services.AddScoped<IFolderRepository, FolderRepository>();
 builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddCors(options =>

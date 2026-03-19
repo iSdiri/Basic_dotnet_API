@@ -10,4 +10,8 @@ public class Note
     // Foreign key
     public int UserId { get; set; }
     public User User { get; set; } = null!;
+
+    // Foreign key
+    public int? FolderId { get; set; }
+    public Folder? Folder { get; set; }
 }

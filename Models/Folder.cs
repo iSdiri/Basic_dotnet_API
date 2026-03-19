@@ -1,12 +1,15 @@
 namespace Basic_dotnet_API.Models;
 
-public class User
+public class Folder
 {
     public int Id { get; set; }
-    public string Username { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+    // Foreign key
+    public int UserId { get; set; }
+    public User User { get; set; } = null!;
+
+    // Navigation property
     public ICollection<Note> Notes { get; set; } = new List<Note>();
-    public ICollection<Folder> Folders { get; set; } = new List<Folder>();
 }

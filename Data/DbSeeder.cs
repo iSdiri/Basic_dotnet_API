@@ -17,11 +17,21 @@ public static class DbSeeder
         context.Users.AddRange(users);
         context.SaveChanges();
 
+        var folders = new List<Folder>
+        {
+            new() { Name = "Tasks", UserId = 1 },
+            new() { Name = "Sport", UserId = 1 },
+            new() { Name = "Work", UserId = 1 }
+        };
+
+        context.Folders.AddRange(folders);
+        context.SaveChanges();
+
         var notes = new List<Note>
         {
-            new() { Title = "Shopping list", Content = "Milk, eggs, bread", UserId = 1 },
-            new() { Title = "Book notes", Content = "Finish Clean Code chapter 3", UserId = 1 },
-            new() { Title = "Workout", Content = "Run 5km minimum", UserId = 2 }
+            new() { Title = "Shopping list", Content = "Milk, eggs, bread", UserId = 1, FolderId = 1 },
+            new() { Title = "Book notes", Content = "Finish Clean Code chapter 3", UserId = 1, FolderId = 3 },
+            new() { Title = "Workout", Content = "Run 5km minimum", UserId = 1, FolderId = 2 }
         };
 
         context.Notes.AddRange(notes);

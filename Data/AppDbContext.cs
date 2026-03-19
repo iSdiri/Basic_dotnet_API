@@ -7,5 +7,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     public DbSet<User> Users => Set<User>();
     public DbSet<Note> Notes => Set<Note>();
+    public DbSet<Folder> Folders => Set<Folder>();
     public DbSet<AppUser> AppUsers => Set<AppUser>();
 }
