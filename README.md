@@ -17,6 +17,11 @@ A fullstack note-taking app built with ASP.NET Core 8 and React. Features JWT au
 - React Router
 - Axios
 
+**Tests**
+- xUnit
+- Moq
+- FluentAssertions
+
 ## Prerequisites
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download)
@@ -25,15 +30,16 @@ A fullstack note-taking app built with ASP.NET Core 8 and React. Features JWT au
 
 ## Project Structure
 ```
-├── Controllers        # HTTP endpoints
-├── Data               # DbContext and seed data
-├── DTOs               # Data Transfer Objects
-├── Mappers            # DTO <-> Model conversion
-├── Models             # Domain entities
-├── Repositories       # Data access layer
-├── Services           # TokenService (JWT)
-├── Validators         # FluentValidation rules
-└── client/            # React frontend
+├── Controllers              # HTTP endpoints
+├── Data                     # DbContext and seed data
+├── DTOs                     # Data Transfer Objects
+├── Mappers                  # DTO <-> Model conversion
+├── Models                   # Domain entities
+├── Repositories             # Data access layer
+├── Services                 # TokenService (JWT)
+├── Validators               # FluentValidation rules
+├── Basic_Note_App.Tests/    # Unit tests
+└── client/                  # React frontend
 ```
 
 ## Getting Started
@@ -75,6 +81,13 @@ npm run dev
 ```
 
 App available at: `http://localhost:5173`
+
+### Tests
+```bash
+dotnet test
+```
+
+19 tests covering repositories and controllers.
 
 ## Authentication
 
