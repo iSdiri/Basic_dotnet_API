@@ -21,8 +21,8 @@ public class NoteRepositoryTests
     {
         var context = GetDbContext();
         context.Notes.AddRange(
-            new Note { Title = "Note 1", Content = "Content 1", UserId = 1 },
-            new Note { Title = "Note 2", Content = "Content 2", UserId = 1 }
+            new Note { Title = "Note 1", Content = "Content 1", AppUserId = 1 },
+            new Note { Title = "Note 2", Content = "Content 2", AppUserId = 1 }
         );
         await context.SaveChangesAsync();
 
@@ -36,7 +36,7 @@ public class NoteRepositoryTests
     public async Task GetByIdAsync_ShouldReturnNote_WhenExists()
     {
         var context = GetDbContext();
-        var note = new Note { Title = "Test", Content = "Content", UserId = 1 };
+        var note = new Note { Title = "Test", Content = "Content", AppUserId = 1 };
         context.Notes.Add(note);
         await context.SaveChangesAsync();
 
@@ -63,7 +63,7 @@ public class NoteRepositoryTests
     {
         var context = GetDbContext();
         var repo = new NoteRepository(context);
-        var note = new Note { Title = "New Note", Content = "Content", UserId = 1 };
+        var note = new Note { Title = "New Note", Content = "Content", AppUserId = 1 };
 
         var result = await repo.CreateAsync(note);
 
@@ -75,7 +75,7 @@ public class NoteRepositoryTests
     public async Task UpdateAsync_ShouldUpdateNote_WhenExists()
     {
         var context = GetDbContext();
-        var note = new Note { Title = "Old Title", Content = "Old Content", UserId = 1 };
+        var note = new Note { Title = "Old Title", Content = "Old Content", AppUserId = 1 };
         context.Notes.Add(note);
         await context.SaveChangesAsync();
 
@@ -91,7 +91,7 @@ public class NoteRepositoryTests
     public async Task DeleteAsync_ShouldReturnTrue_WhenExists()
     {
         var context = GetDbContext();
-        var note = new Note { Title = "To Delete", Content = "Content", UserId = 1 };
+        var note = new Note { Title = "To Delete", Content = "Content", AppUserId = 1 };
         context.Notes.Add(note);
         await context.SaveChangesAsync();
 

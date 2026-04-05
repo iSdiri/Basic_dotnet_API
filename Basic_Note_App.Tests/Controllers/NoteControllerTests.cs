@@ -17,8 +17,8 @@ public class NoteControllerTests
     {
         var notes = new List<Note>
         {
-            new() { Id = 1, Title = "Note 1", Content = "Content 1", UserId = 1 },
-            new() { Id = 2, Title = "Note 2", Content = "Content 2", UserId = 1 }
+            new() { Id = 1, Title = "Note 1", Content = "Content 1", AppUserId = 1 },
+            new() { Id = 2, Title = "Note 2", Content = "Content 2", AppUserId = 1 }
         };
         _mockRepo.Setup(r => r.GetAllAsync()).ReturnsAsync(notes);
 
@@ -42,7 +42,7 @@ public class NoteControllerTests
     [Fact]
     public async Task GetById_ShouldReturn200_WhenFound()
     {
-        var note = new Note { Id = 1, Title = "Test", Content = "Content", UserId = 1 };
+        var note = new Note { Id = 1, Title = "Test", Content = "Content", AppUserId = 1 };
         _mockRepo.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(note);
 
         var controller = new NoteController(_mockRepo.Object);
@@ -55,7 +55,7 @@ public class NoteControllerTests
     public async Task Create_ShouldReturn201()
     {
         var dto = new CreateNoteDto("New Note", "Content", 1, null);
-        var note = new Note { Id = 1, Title = "New Note", Content = "Content", UserId = 1 };
+        var note = new Note { Id = 1, Title = "New Note", Content = "Content", AppUserId = 1 };
         _mockRepo.Setup(r => r.CreateAsync(It.IsAny<Note>())).ReturnsAsync(note);
 
         var controller = new NoteController(_mockRepo.Object);
