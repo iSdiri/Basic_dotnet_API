@@ -6,10 +6,9 @@ public class Folder
     public string Name { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    // Foreign key
-    public int UserId { get; set; }
-    public User User { get; set; } = null!;
+    // Foreign key vers AppUser
+    public int AppUserId { get; set; }
+    public AppUser AppUser { get; set; } = null!;
 
-    // Navigation property
     public ICollection<Note> Notes { get; set; } = new List<Note>();
 }

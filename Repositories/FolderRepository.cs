@@ -10,8 +10,8 @@ public class FolderRepository(AppDbContext context) : IFolderRepository
     public async Task<IEnumerable<Folder>> GetAllAsync() =>
         await context.Folders.ToListAsync();
 
-    public async Task<IEnumerable<Folder>> GetByUserIdAsync(int userId) =>
-        await context.Folders.Where(f => f.UserId == userId).ToListAsync();
+    public async Task<IEnumerable<Folder>> GetByUserIdAsync(int appUserId) =>
+        await context.Folders.Where(f => f.AppUserId == appUserId).ToListAsync();
 
     public async Task<Folder?> GetByIdAsync(int id) =>
         await context.Folders.FindAsync(id);

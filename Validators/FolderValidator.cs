@@ -11,8 +11,8 @@ public class CreateFolderValidator : AbstractValidator<CreateFolderDto>
             .NotEmpty().WithMessage("Name is required.")
             .MaximumLength(50).WithMessage("Name can't exceed 50 characters.");
 
-        RuleFor(x => x.UserId)
-            .GreaterThan(0).WithMessage("UserId must be valid.");
+        RuleFor(x => x.AppUserId)
+            .GreaterThan(0).WithMessage("AppUserId must be valid.");
     }
 }
 

@@ -21,8 +21,8 @@ public class FolderRepositoryTests
     {
         var context = GetDbContext();
         context.Folders.AddRange(
-            new Folder { Name = "Work", UserId = 1 },
-            new Folder { Name = "Sport", UserId = 1 }
+            new Folder { Name = "Work", AppUserId = 1 },
+            new Folder { Name = "Sport", AppUserId = 1 }
         );
         await context.SaveChangesAsync();
 
@@ -37,8 +37,8 @@ public class FolderRepositoryTests
     {
         var context = GetDbContext();
         context.Folders.AddRange(
-            new Folder { Name = "Work", UserId = 1 },
-            new Folder { Name = "Sport", UserId = 2 }
+            new Folder { Name = "Work", AppUserId = 1 },
+            new Folder { Name = "Sport", AppUserId = 2 }
         );
         await context.SaveChangesAsync();
 
@@ -54,7 +54,7 @@ public class FolderRepositoryTests
     {
         var context = GetDbContext();
         var repo = new FolderRepository(context);
-        var folder = new Folder { Name = "Tasks", UserId = 1 };
+        var folder = new Folder { Name = "Tasks", AppUserId = 1 };
 
         var result = await repo.CreateAsync(folder);
 
@@ -66,7 +66,7 @@ public class FolderRepositoryTests
     public async Task DeleteAsync_ShouldReturnTrue_WhenExists()
     {
         var context = GetDbContext();
-        var folder = new Folder { Name = "To Delete", UserId = 1 };
+        var folder = new Folder { Name = "To Delete", AppUserId = 1 };
         context.Folders.Add(folder);
         await context.SaveChangesAsync();
 
