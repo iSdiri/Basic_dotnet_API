@@ -53,12 +53,9 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
-        policy.WithOrigins(
-            "http://localhost:5173",
-            builder.Configuration["AllowedOrigin"] ?? "http://localhost:5173"
-        )
-        .AllowAnyHeader()
-        .AllowAnyMethod());
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod());
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
